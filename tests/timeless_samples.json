@@ -1,0 +1,464 @@
+{
+ "_note": "In-game observations; graph ids from passiveskillgraph.psg. Socket 2491 (-5470.5, 9492.5), radius Very Large (~1800).",
+ "samples": [
+  {
+   "jewel": "Heroic Tragedy",
+   "version": 6,
+   "lord": "Medved",
+   "seed": 3621,
+   "socket": 2491,
+   "league": "Forbidden Rites",
+   "nodes": [
+    {
+     "id": 18157,
+     "orig": "Tempered Defences",
+     "kind": "notable",
+     "result": "Born of Middengard"
+    },
+    {
+     "id": 1169,
+     "orig": "Urgent Call",
+     "kind": "notable",
+     "result": "One for the Road"
+    },
+    {
+     "id": 59208,
+     "orig": "Frantic Fighter",
+     "kind": "notable",
+     "result": "Wrest Control"
+    },
+    {
+     "id": 19546,
+     "orig": "Favourable Odds",
+     "kind": "notable",
+     "result": "Vorana's Fury"
+    },
+    {
+     "id": 7341,
+     "orig": "Ignore Pain",
+     "kind": "notable",
+     "result": "Runic Tattoos"
+    },
+    {
+     "id": 37276,
+     "orig": "Battle Trance",
+     "kind": "notable",
+     "result": "Sensible Precautions"
+    },
+    {
+     "id": 28542,
+     "orig": "The Molten One's Gift",
+     "kind": "notable",
+     "result": "Vorana's Fury"
+    },
+    {
+     "id": 17825,
+     "orig": "Tactical Retreat",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 35792,
+     "orig": "Blood of Rage",
+     "kind": "notable",
+     "result": "One for the Road"
+    }
+   ],
+   "also_socket_2491_only": true
+  },
+  {
+   "jewel": "Heroic Tragedy",
+   "version": 6,
+   "lord": "Medved",
+   "seed": 3621,
+   "socket": 54127,
+   "league": "Forbidden Rites",
+   "nodes": [
+    {
+     "id": 48215,
+     "orig": "В голову",
+     "kind": "notable",
+     "result": "One for the Road"
+    },
+    {
+     "id": 934,
+     "orig": "Естественный иммунитет",
+     "kind": "notable",
+     "result": "War of Attrition"
+    },
+    {
+     "id": 17340,
+     "orig": "Прилив адреналина",
+     "kind": "notable",
+     "result": "War Tactics"
+    },
+    {
+     "id": 33216,
+     "orig": "Глубокие раны",
+     "kind": "notable",
+     "result": "Winter Forest"
+    },
+    {
+     "id": 35028,
+     "orig": "В гуще боя",
+     "kind": "notable",
+     "result": "Winter Forest"
+    },
+    {
+     "id": 24766,
+     "orig": "Паранойя",
+     "kind": "notable",
+     "result": "Runic Flows"
+    },
+    {
+     "id": 25711,
+     "orig": "Боевой азарт",
+     "kind": "notable",
+     "result": "Born of Middengard"
+    },
+    {
+     "id": 44765,
+     "orig": "Отвлекающее присутствие",
+     "kind": "notable",
+     "result": "Druidic Alliance"
+    },
+    {
+     "id": 43829,
+     "orig": "Продвинутые боеприпасы",
+     "kind": "notable",
+     "result": "Runic Flows"
+    },
+    {
+     "id": 55060,
+     "orig": "Шрапнель",
+     "kind": "notable",
+     "result": "Force of Will"
+    },
+    {
+     "id": 57190,
+     "orig": "Предвестник рока",
+     "kind": "notable",
+     "result": "Oaken Form"
+    },
+    {
+     "id": 64119,
+     "orig": "Быстрая перезарядка",
+     "kind": "notable",
+     "result": "Natural Energies"
+    },
+    {
+     "id": 17882,
+     "orig": "Нестабильные гранаты",
+     "kind": "notable",
+     "result": "Natural Energies"
+    },
+    {
+     "id": 37872,
+     "orig": "Дар присутствия",
+     "kind": "notable",
+     "result": "Wrest Control"
+    }
+   ]
+  },
+  {
+   "jewel": "Heroic Tragedy",
+   "version": 6,
+   "lord": "Olroth",
+   "seed": 631,
+   "socket": 54127,
+   "league": "Forbidden Rites",
+   "nodes": [
+    {
+     "id": 48215,
+     "orig": "В голову",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 934,
+     "orig": "Естественный иммунитет",
+     "kind": "notable",
+     "result": "Scorched Earth"
+    },
+    {
+     "id": 33216,
+     "orig": "Глубокие раны",
+     "kind": "notable",
+     "result": "War Tactics"
+    },
+    {
+     "id": 35028,
+     "orig": "В гуще боя",
+     "kind": "notable",
+     "result": "Survival Plan"
+    },
+    {
+     "id": 24766,
+     "orig": "Паранойя",
+     "kind": "notable",
+     "result": "Firedancer"
+    },
+    {
+     "id": 25711,
+     "orig": "Боевой азарт",
+     "kind": "notable",
+     "result": "Wrest Control"
+    },
+    {
+     "id": 7275,
+     "orig": "Электризующая восприимчивость",
+     "kind": "notable",
+     "result": "Targeted Strike"
+    },
+    {
+     "id": 44765,
+     "orig": "Отвлекающее присутствие",
+     "kind": "notable",
+     "result": "Spider's Lesson"
+    },
+    {
+     "id": 43829,
+     "orig": "Продвинутые боеприпасы",
+     "kind": "notable",
+     "result": "Born of Middengard"
+    },
+    {
+     "id": 55060,
+     "orig": "Шрапнель",
+     "kind": "notable",
+     "result": "Firedancer"
+    },
+    {
+     "id": 57190,
+     "orig": "Предвестник рока",
+     "kind": "notable",
+     "result": "Siege Mentality"
+    },
+    {
+     "id": 64119,
+     "orig": "Быстрая перезарядка",
+     "kind": "notable",
+     "result": "War of Attrition"
+    },
+    {
+     "id": 17882,
+     "orig": "Нестабильные гранаты",
+     "kind": "notable",
+     "result": "Druidic Alliance"
+    },
+    {
+     "id": 17340,
+     "orig": "Прилив адреналина",
+     "kind": "notable",
+     "result": "Fight as One"
+    },
+    {
+     "id": 37872,
+     "orig": "Дар присутствия",
+     "kind": "notable",
+     "result": "Vorana's Fury"
+    }
+   ]
+  },
+  {
+   "jewel": "Heroic Tragedy",
+   "version": 6,
+   "lord": "Medved",
+   "seed": 543,
+   "socket": 54127,
+   "league": "Forbidden Rites",
+   "nodes": [
+    {
+     "id": 48215,
+     "orig": "В голову",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 934,
+     "orig": "Естественный иммунитет",
+     "kind": "notable",
+     "result": "Guerilla Warfare"
+    },
+    {
+     "id": 33216,
+     "orig": "Глубокие раны",
+     "kind": "notable",
+     "result": "Survival Plan"
+    },
+    {
+     "id": 35028,
+     "orig": "В гуще боя",
+     "kind": "notable",
+     "result": "Steel and Sorcery"
+    },
+    {
+     "id": 24766,
+     "orig": "Паранойя",
+     "kind": "notable",
+     "result": "Born of Middengard"
+    },
+    {
+     "id": 25711,
+     "orig": "Боевой азарт",
+     "kind": "notable",
+     "result": "Aim for the Jugular"
+    },
+    {
+     "id": 7275,
+     "orig": "Электризующая восприимчивость",
+     "kind": "notable",
+     "result": "War Tactics"
+    },
+    {
+     "id": 44765,
+     "orig": "Отвлекающее присутствие",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 43829,
+     "orig": "Продвинутые боеприпасы",
+     "kind": "notable",
+     "result": "Wrest Control"
+    },
+    {
+     "id": 55060,
+     "orig": "Шрапнель",
+     "kind": "notable",
+     "result": "Sensible Precautions"
+    },
+    {
+     "id": 57190,
+     "orig": "Предвестник рока",
+     "kind": "notable",
+     "result": "One for the Road"
+    },
+    {
+     "id": 64119,
+     "orig": "Быстрая перезарядка",
+     "kind": "notable",
+     "result": "Mercenary's Lot"
+    },
+    {
+     "id": 17882,
+     "orig": "Нестабильные гранаты",
+     "kind": "notable",
+     "result": "Triskelion's Light"
+    },
+    {
+     "id": 17340,
+     "orig": "Прилив адреналина",
+     "kind": "notable",
+     "result": "Triskelion's Light"
+    },
+    {
+     "id": 37872,
+     "orig": "Дар присутствия",
+     "kind": "notable",
+     "result": "Wrest Control"
+    }
+   ]
+  },
+  {
+   "jewel": "Heroic Tragedy",
+   "version": 6,
+   "lord": "Olroth",
+   "seed": 543,
+   "socket": 54127,
+   "league": "Forbidden Rites",
+   "nodes": [
+    {
+     "id": 48215,
+     "orig": "В голову",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 934,
+     "orig": "Естественный иммунитет",
+     "kind": "notable",
+     "result": "Guerilla Warfare"
+    },
+    {
+     "id": 33216,
+     "orig": "Глубокие раны",
+     "kind": "notable",
+     "result": "Survival Plan"
+    },
+    {
+     "id": 35028,
+     "orig": "В гуще боя",
+     "kind": "notable",
+     "result": "Steel and Sorcery"
+    },
+    {
+     "id": 24766,
+     "orig": "Паранойя",
+     "kind": "notable",
+     "result": "Born of Middengard"
+    },
+    {
+     "id": 25711,
+     "orig": "Боевой азарт",
+     "kind": "notable",
+     "result": "Aim for the Jugular"
+    },
+    {
+     "id": 7275,
+     "orig": "Электризующая восприимчивость",
+     "kind": "notable",
+     "result": "War Tactics"
+    },
+    {
+     "id": 44765,
+     "orig": "Отвлекающее присутствие",
+     "kind": "notable",
+     "result": "Forceful Energies"
+    },
+    {
+     "id": 43829,
+     "orig": "Продвинутые боеприпасы",
+     "kind": "notable",
+     "result": "Wrest Control"
+    },
+    {
+     "id": 55060,
+     "orig": "Шрапнель",
+     "kind": "notable",
+     "result": "Sensible Precautions"
+    },
+    {
+     "id": 57190,
+     "orig": "Предвестник рока",
+     "kind": "notable",
+     "result": "One for the Road"
+    },
+    {
+     "id": 64119,
+     "orig": "Быстрая перезарядка",
+     "kind": "notable",
+     "result": "Mercenary's Lot"
+    },
+    {
+     "id": 17882,
+     "orig": "Нестабильные гранаты",
+     "kind": "notable",
+     "result": "Triskelion's Light"
+    },
+    {
+     "id": 17340,
+     "orig": "Прилив адреналина",
+     "kind": "notable",
+     "result": "Triskelion's Light"
+    },
+    {
+     "id": 37872,
+     "orig": "Дар присутствия",
+     "kind": "notable",
+     "result": "Wrest Control"
+    }
+   ]
+  }
+ ]
+}

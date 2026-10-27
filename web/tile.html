@@ -1,0 +1,21 @@
+<!doctype html><html><head><meta charset="utf-8"><title>tile</title>
+<style>body{margin:0;background:#111;color:#ccc;font:13px sans-serif}#i{position:fixed;left:8px;top:8px;z-index:2}</style>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.168.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.168.0/examples/jsm/"}}</script></head>
+<body><div id="i">loading…</div>
+<script type="module">
+import * as THREE from 'three';
+import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
+import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
+const q=new URLSearchParams(location.search);
+const r=new THREE.WebGLRenderer({antialias:true});r.setSize(innerWidth,innerHeight);document.body.appendChild(r.domElement);
+const sc=new THREE.Scene();sc.background=new THREE.Color(0x202020);
+const cam=new THREE.PerspectiveCamera(45,innerWidth/innerHeight,.1,5000);
+sc.add(new THREE.HemisphereLight(0xffffff,0x554433,1.6));const d=new THREE.DirectionalLight(0xffffff,2);d.position.set(5,10,3);sc.add(d);
+const ctl=new OrbitControls(cam,r.domElement);
+const g=await new GLTFLoader().loadAsync('/api/tile?tgt='+encodeURIComponent(q.get('tgt')));
+g.scene.traverse(o=>{if(o.isMesh){o.material.side=THREE.DoubleSide;if(o.material.map)o.material.map.colorSpace=THREE.SRGBColorSpace}});
+sc.add(g.scene);const b=new THREE.Box3().setFromObject(g.scene),c=b.getCenter(new THREE.Vector3()),s=b.getSize(new THREE.Vector3());
+const m=Math.max(s.x,s.z);cam.position.set(c.x,c.y+m*.7,c.z-m*.7);ctl.target.copy(c);ctl.update();
+document.getElementById('i').textContent=q.get('tgt')+' size '+s.toArray().map(x=>x.toFixed(1));
+(function l(){requestAnimationFrame(l);ctl.update();r.render(sc,cam)})();
+</script></body></html>

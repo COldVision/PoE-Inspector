@@ -1,0 +1,56 @@
+# Nothing extracted from the game or built from it goes into the repository: the app builds its database from the user's own install on first run.
+poe2.db
+*.db
+index.raw
+cache/
+recordings/
+skills_export.json
+camera_ast_tail.bin
+*.glb
+*.dds
+*.png
+*.jpg
+*.jpeg
+*.webm
+*.mp4
+*.wav
+*.ogg
+*.zip
+
+# proprietary / third-party binaries
+*.dll
+*.exe
+poe_inspector/oo2core.dll
+
+# third-party data and notes kept locally
+pob_github/
+public_ref/
+ref/
+
+# logs, backups, scratch
+*.log
+*.err
+*.bak
+*.bak_*
+rebuild.log
+patch_*.py
+__pycache__/
+*.pyc
+smoke_test.py
+_t_*
+
+# app build output and local settings
+../poe_inspector_build/
+update.json
+.claude/
+
+# keep the app icon and logos (they are ours)
+!web/logo.png
+!logos/*.svg
+!web/app.ico
+!web/logo.ico
+
+# not clearly redistributable / game-derived
+scene_forest.json
+web/fonts/OptimusPrinceps*
+web/fonts/fontin-*

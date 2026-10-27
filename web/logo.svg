@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a162f"/><stop offset="1" stop-color="#030409"/></linearGradient>
+<linearGradient id="ac" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ff7a94"/><stop offset="1" stop-color="#fc4c70"/></linearGradient>
+<radialGradient id="gl" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#fc4c70" stop-opacity=".55"/><stop offset="1" stop-color="#fc4c70" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="256" height="256" rx="56" fill="url(#bg)"/>
+<rect x="5" y="5" width="246" height="246" rx="52" fill="none" stroke="#3e2d57" stroke-width="3"/>
+
+<circle cx="128" cy="132" r="96" fill="url(#gl)"/>
+<polygon points="128,40 206,84 206,172 128,216 50,172 50,84" fill="#3e2d57" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+<polygon points="128,40 206,84 128,128 50,84" fill="url(#ac)" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+<polygon points="50,84 128,128 128,216 50,172" fill="#1a162f" stroke="#ffffff" stroke-width="6" stroke-linejoin="round"/>
+<path d="M128 128v88" stroke="#ffffff" stroke-width="6"/>
+<circle cx="168" cy="150" r="20" fill="none" stroke="#ff7a94" stroke-width="6"/><path d="M182 165l16 16" stroke="#ff7a94" stroke-width="8" stroke-linecap="round"/>
+
+</svg>
