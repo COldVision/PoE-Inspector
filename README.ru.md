@@ -12,7 +12,7 @@
 
 [⬇️ Скачать](https://github.com/COldVision/PoE-Inspector/releases/latest) · [✨ Возможности](#-возможности) · [🚀 Установка](#-установка) · [🛠️ Запуск из исходников](#%EF%B8%8F-запуск-из-исходников) · [❓ Вопросы](#-вопросы-и-ответы)
 
-![Редактор](docs/screenshots/01-editor.webp)
+![Редактор](docs/screenshots/00-hero.webp)
 
 </div>
 

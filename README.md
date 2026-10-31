@@ -12,7 +12,7 @@ Everything is read straight from your own game install: skills, items, monsters,
 
 [⬇️ Download](https://github.com/COldVision/PoE-Inspector/releases/latest) · [✨ Features](#-features) · [🚀 Install](#-install) · [🛠️ Run from source](#%EF%B8%8F-run-from-source) · [❓ FAQ](#-faq)
 
-![Editor](docs/screenshots/01-editor.webp)
+![Editor](docs/screenshots/00-hero.webp)
 
 </div>
 
