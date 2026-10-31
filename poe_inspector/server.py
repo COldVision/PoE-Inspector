@@ -71,6 +71,9 @@ def dedupe_monsters(store, rows):
 store = None
 
 
+CLASS_GROUPS = {"Currency": ("Currency", "Stackable Currency", "Delve Socketable Currency", "Delve Stackable Socketable Currency")}
+
+
 class H(BaseHTTPRequestHandler):
     def log_message(self, *a):
         pass
@@ -190,8 +193,14 @@ class H(BaseHTTPRequestHandler):
                 only = " and model is not null" if q.get("model") == "1" else ""
                 cols = "id,name,icon,model,class,row" if t == "items" else "id,name,model,row,ao"
                 args = [s, s]
+                if t == "items" and q.get("dnt") == "1":
+                    only += " and (name like '%[DNT%' or name like '%[UNUSED%')"
                 if t == "items" and q.get("class"):
-                    only += " and class=?"; args.append(q["class"])
+                    grp = CLASS_GROUPS.get(q["class"])
+                    if grp:
+                        only += " and class in (%s)" % ",".join("?" * len(grp)); args += list(grp)
+                    else:
+                        only += " and class=?"; args.append(q["class"])
                 if t == "monsters":
                     cur = store.db.execute(f"select {cols} from {t} where (name like ? or id like ?){only} order by name", args)
                     rows = rows_to_dicts(cur, cols.split(","))
@@ -209,14 +218,28 @@ class H(BaseHTTPRequestHandler):
                     rows.sort(key=lambda r: not r["boss"])   # stable: bosses first, name order kept inside each group
                     return self.send(200, rows[:lim])
                 cur = store.db.execute(f"select {cols} from {t} where (name like ? or id like ?){only} order by name limit ?", args + [lim])
-                return self.send(200, rows_to_dicts(cur, cols.split(",")))
+                rows = rows_to_dicts(cur, cols.split(","))
+                if t == "items":
+                    from . import itemcard
+                    for r in rows:
+                        k = itemcard.dnt_kind(r["name"])
+                        if k:
+                            r["dnt"] = k; r["name"] = itemcard.clean_name(r["name"])
+                return self.send(200, rows)
             if p == "/api/itemclasses":
-                return self.send(200, [{"name": a, "count": b} for a, b in store.db.execute("select class,count(*) from items where class is not null group by class order by class")])
+                cnt = dict(store.db.execute("select class,count(*) from items where class is not null group by class").fetchall())
+                for g, members in CLASS_GROUPS.items():   # "Currency" is a group: the game currency lives in several item classes
+                    cnt[g] = sum(cnt.get(m, 0) for m in members)
+                return self.send(200, [{"name": k, "count": cnt[k]} for k in sorted(cnt)])
             if p == "/api/uniques":
                 like = f"%{q.get('q', '')}%"
                 cur = store.db.execute("select name,base,slot,league,icon,model from uniques where (name like ? or base like ?)" + (" and slot=?" if q.get("slot") else "") + " order by name",
                                        (like, like) + ((q["slot"],) if q.get("slot") else ()))
-                return self.send(200, rows_to_dicts(cur, ["name", "base", "slot", "league", "icon", "model"]))
+                rows = rows_to_dicts(cur, ["name", "base", "slot", "league", "icon", "model"])
+                cls = dict(store.db.execute("select name,class from items where class is not null").fetchall())
+                for r in rows:
+                    r["class"] = cls.get(r["base"])
+                return self.send(200, rows)
             if p == "/api/unique":
                 r = store.db.execute("select data,icon,model from uniques where name=?", (q["name"],)).fetchone()
                 if not r:
@@ -258,7 +281,7 @@ class H(BaseHTTPRequestHandler):
                 if d is None:
                     return self.send(404, {"error": "no such table"})
                 cols, schema = tables.describe(d, name, SCHEMA)
-                off, lim, flt = int(q.get("offset", 0)), q.get("lang", "ru"), min(int(q.get("limit", 100)), 500), q.get("q", "").lower()
+                off, _lang, lim, flt = int(q.get("offset", 0)), q.get("lang", "ru"), min(int(q.get("limit", 100)), 500), q.get("q", "").lower()
                 out, total = [], 0
                 for i in range(d.rows):
                     row = [tables.cell(d, i, c) for c in cols]
@@ -453,7 +476,7 @@ class H(BaseHTTPRequestHandler):
                 from . import monster
                 row = int(q["row"])
                 cdir = os.path.join(DATA, "cache", "monsters"); os.makedirs(cdir, exist_ok=True)
-                gp = os.path.join(cdir, f"{row}_m10.json")
+                gp = os.path.join(cdir, f"{row}_m11.json")
                 if not os.path.exists(gp):
                     json.dump(monster.detail(store, row), open(gp, "w", encoding="utf-8"), ensure_ascii=False)
                 return self.send(200, open(gp, "rb").read())
@@ -533,6 +556,10 @@ class H(BaseHTTPRequestHandler):
                 else:
                     r = store.db.execute("select ao,ao2,class from items where row=?", (int(q["row"]),)).fetchone()
                 return self.send(200, {"model": iteminfo.worn_model(store, *r) if r else None})
+            if p == "/api/itemcard":
+                from . import itemcard
+                d = itemcard.card(store, int(q["row"]))
+                return self.send(200 if d else 404, d or {"error": "not found"})
             if p == "/api/iteminfo":
                 from . import iteminfo
                 return self.send(200, iteminfo.info(store, int(q["row"])))
@@ -591,6 +618,12 @@ class H(BaseHTTPRequestHandler):
 def main(db_path=DB, port=8765):
     global store
     store = Store(db_path) if os.path.isfile(db_path) else None   # None: first run, the setup page builds the database
+    if store is not None:   # a database built by an earlier version may lack the editor tables
+        try:
+            from . import setup as _setup
+            _setup.ensure_extra(store)
+        except Exception as e:
+            print("ensure_extra:", e, flush=True)
     ThreadingHTTPServer.request_queue_size = 256   # default backlog of 5 resets connections when a long list loads thousands of icons
     ThreadingHTTPServer.daemon_threads = True
     srv = ThreadingHTTPServer(("127.0.0.1", port), H)

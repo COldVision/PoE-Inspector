@@ -3,7 +3,7 @@ import os, socket, sys, threading, time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 if os.path.basename(HERE).lower() == "app":   # installed copy: code is read-only, data goes to the user's profile (a project checkout keeps data next to the code)
-    os.environ.setdefault("POE_INSPECTOR_DATA", os.path.join(os.environ.get("LOCALAPPDATA", HERE), "PoE Inspector"))
+    os.environ.setdefault("POE_INSPECTOR_DATA", os.path.join(os.path.dirname(HERE), "data"))   # <install folder>\data: database, caches and the window profile are removed together with the program
 sys.path.insert(0, HERE)
 try:
     import ctypes

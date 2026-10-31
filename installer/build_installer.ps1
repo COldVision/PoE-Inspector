@@ -35,6 +35,7 @@ if ($LASTEXITCODE) { throw 'pip install failed' }
 New-Item -ItemType Directory -Force (Join-Path $app 'poe_inspector') | Out-Null
 Copy-Item (Join-Path $proj 'poe_inspector\*.py') (Join-Path $app 'poe_inspector')
 Copy-Item (Join-Path $proj 'poe_inspector\oo2core.dll') (Join-Path $app 'poe_inspector')
+Copy-Item (Join-Path $proj 'poe_inspector\*.json') (Join-Path $app 'poe_inspector')   # asc_layout.json, lineage_drops.json: data the code reads at run time
 Copy-Item (Join-Path $proj 'web') (Join-Path $app 'web') -Recurse
 Get-ChildItem (Join-Path $app 'web') -Recurse -Include *.bak* | Remove-Item -Force
 Copy-Item (Join-Path $proj 'schema.min.json') $app

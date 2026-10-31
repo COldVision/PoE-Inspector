@@ -3,7 +3,7 @@ import glob, os, re, threading, time, traceback
 
 from .paths import DB
 
-state = {"phase": "idle", "step": 0, "steps": 3, "msg": "", "log": [], "error": "", "started": 0}
+state = {"phase": "idle", "step": 0, "steps": 4, "msg": "", "log": [], "error": "", "started": 0}
 _lock = threading.Lock()
 
 
@@ -33,6 +33,16 @@ def _log(m):
     state["msg"] = m; state["log"].append(m); state["log"] = state["log"][-40:]
 
 
+def ensure_extra(s, log=print):
+    """Tables the editor needs (characters, animation clips); older databases lack them, so this also runs at server start."""
+    from . import actor
+    have = {r[0] for r in s.db.execute("select name from sqlite_master where type='table'")}
+    if "actors" not in have:
+        actor.build_actor_table(s, log)
+    if "anim_clips" not in have:
+        actor.build_anim_table(s, log)
+
+
 def _run(game):
     from . import server, index, store as st, catalog, uniques
     try:
@@ -44,6 +54,8 @@ def _run(game):
         catalog.build(s, _log)
         state["step"] = 3; _log("Уникальные предметы…")
         uniques.build(s, _log)
+        state["step"] = 4; _log("Персонажи и анимации редактора…")
+        ensure_extra(s, _log)
         server.store = s
         state["phase"] = "done"; _log("Готово")
     except Exception as e:

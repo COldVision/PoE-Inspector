@@ -1,4 +1,4 @@
-"""Where things live. APP: code, web files and the dat schema (read-only, may be in Program Files). DATA: poe2.db, caches, recordings (writable; in an installed copy this is %LOCALAPPDATA%\\PoE Inspector)."""
+"""Where things live. APP: code, web files and the dat schema (read-only, may be in Program Files). DATA: poe2.db, caches, recordings (writable; in an installed copy this is <install folder>\\data)."""
 import os
 
 APP = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

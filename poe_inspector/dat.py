@@ -8,7 +8,7 @@ class Dat:
         self.rows = struct.unpack_from("<I", data, 0)[0]
         self.boundary = data.find(b"\xbb\xbb\xbb\xbb\xbb\xbb\xbb\xbb", 4)
         # boundary must sit on a row boundary
-        while self.rows and (self.boundary - 4) % self.rows:
+        while self.rows and self.boundary >= 0 and (self.boundary - 4) % self.rows:   # boundary -1 looped forever
             self.boundary = data.find(b"\xbb" * 8, self.boundary + 1)
         self.width = (self.boundary - 4) // self.rows if self.rows else 0
         self.heap = self.boundary  # refs are measured from boundary

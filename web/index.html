@@ -209,7 +209,7 @@ pre.src{font-size:11px;max-height:240px;overflow:auto;background:var(--panel);bo
   <section id="treev" hidden aria-label="Дерево пассивных умений"></section>
   <section id="home" hidden aria-label="Главная"><div class="hbox"></div></section>
   <div id="left">
-    <div id="bar" role="search"><input id="q" type="text" placeholder="Поиск…" aria-label="Поиск"><select id="cls" aria-label="Класс предмета" style="display:none;max-width:170px"><option value="">Все классы</option></select><select id="asel" aria-label="Акт" style="display:none;max-width:170px"></select><select id="gsel" aria-label="Тип свойства" style="display:none;max-width:150px"></select><select id="tsel" aria-label="Тег" style="display:none;max-width:150px"></select><label id="ulabel" style="display:none"><input id="uonly" type="checkbox" autocomplete="off"> Уникальные</label><label id="mlabel"><input id="monly" type="checkbox" autocomplete="off"> только с моделью</label></div>
+    <div id="bar" role="search"><input id="q" type="text" placeholder="Поиск…" aria-label="Поиск"><select id="cls" aria-label="Класс предмета" style="display:none;max-width:170px"><option value="">Все классы</option></select><select id="asel" aria-label="Акт" style="display:none;max-width:170px"></select><select id="gsel" aria-label="Тип свойства" style="display:none;max-width:150px"></select><select id="tsel" aria-label="Тег" style="display:none;max-width:150px"></select><label id="ulabel" style="display:none"><input id="uonly" type="checkbox" autocomplete="off"> Уникальные</label><label id="dlabel" style="display:none" title="Предметы с пометкой [DNT] / [UNUSED] в названии"><input id="dntonly" type="checkbox" autocomplete="off"> DNT</label><label id="mlabel"><input id="monly" type="checkbox" autocomplete="off"> только с моделью</label></div>
     <div id="list" aria-live="polite"></div>
   </div>
   <div id="grip" role="separator" aria-orientation="vertical" aria-label="Ширина левой панели (двойной щелчок — сбросить)" tabindex="0"></div>
@@ -307,7 +307,7 @@ const esc=s=>String(s??'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt
 const api=async(u)=>{const r=await fetch(u);if(!r.ok)throw new Error((await r.json().catch(()=>({}))).error||r.status);return r.json()};
 
 const NAVICON={"home": "<path d=\"M3 11 12 3l9 8\"/><path d=\"M5 10v10h14V10\"/><path d=\"M10 20v-6h4v6\"/>", "mods": "<path d=\"M4 7h16M4 12h16M4 17h10\"/>", "atlas": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><path d=\"M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18\"/>", "tree": "<circle cx=\"12\" cy=\"5\" r=\"2\"/><circle cx=\"6\" cy=\"19\" r=\"2\"/><circle cx=\"18\" cy=\"19\" r=\"2\"/><path d=\"M12 7v5M12 12l-5 5M12 12l5 5\"/>", "ref": "<path d=\"M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z\"/><path d=\"M4 19V5\"/><path d=\"M9 8h6\"/>", "uniques": "<polygon points=\"12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2\"/>", "editor": "<path d=\"M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2\"/><circle cx=\"12\" cy=\"7\" r=\"4\"/>", "skills": "<polygon points=\"13 2 3 14 12 14 11 22 21 10 12 10 13 2\"/>", "scenes": "<path d=\"m8 3 4 8 5-5 5 15H2L8 3z\"/>", "items": "<path d=\"m7.5 4.27 9 5.15\"/><path d=\"M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z\"/><path d=\"m3.3 7 8.7 5 8.7-5\"/><path d=\"M12 22V12\"/>", "monsters": "<circle cx=\"9\" cy=\"12\" r=\"1\"/><circle cx=\"15\" cy=\"12\" r=\"1\"/><path d=\"M8 20v2h8v-2\"/><path d=\"M16 20a2 2 0 0 0 1.56-3.25 8 8 0 1 0-11.12 0A2 2 0 0 0 8 20\"/>", "models": "<path d=\"M21 8 12 3 3 8v8l9 5 9-5z\"/><path d=\"m3 8 9 5 9-5\"/><path d=\"M12 13v8\"/>", "tables": "<path d=\"M12 3v18\"/><rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\"/><path d=\"M3 9h18\"/><path d=\"M3 15h18\"/>", "sources": "<circle cx=\"12\" cy=\"12\" r=\"9\"/><circle cx=\"12\" cy=\"12\" r=\"4\"/><path d=\"M12 3v3M12 18v3M3 12h3M18 12h3\"/>", "files": "<path d=\"M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z\"/>"};
-const HIDDEN_TABS=['mods','ref'];   // sections kept working (tab, endpoints) but not shown in the menu for now
+const HIDDEN_TABS=['ref'];   // sections kept working (tab, endpoints) but not shown in the menu for now
 $('#nav').innerHTML=tabs.filter(t=>!HIDDEN_TABS.includes(t[0])).map(([k,n])=>`<button data-t="${k}"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true">${NAVICON[k]}</svg>${n}</button>`).join('');
 $('#brandhome').onclick=()=>{tab='home';load()};
 { // home page: game folder row + "what is new" block (diff of the database against a saved version snapshot)
@@ -390,7 +390,7 @@ $('#brandhome').onclick=()=>{tab='home';load()};
 window.addEventListener('i18n:change',()=>{if(tab==='ref')load()});
 $('#nav').onclick=e=>{const b=e.target.closest('button');if(b&&b.dataset.t){tab=b.dataset.t;load()}};
 $('#q').oninput=()=>{clearTimeout(timer);timer=setTimeout(load,200)};
-$('#monly').onchange=load; $('#uonly').onchange=load; $('#cls').onchange=load; $('#gsel').onchange=load; $('#asel').onchange=load; $('#tsel').onchange=load;
+$('#monly').onchange=load; $('#uonly').onchange=load; $('#dntonly').onchange=load; $('#cls').onchange=load; $('#gsel').onchange=load; $('#asel').onchange=load; $('#tsel').onchange=load;
 api('/api/itemclasses').then(c=>{$('#cls').insertAdjacentHTML('beforeend',c.map(x=>`<option value="${esc(x.name)}">${esc(x.name)} (${x.count})</option>`).join(''))});
 
 
@@ -526,7 +526,7 @@ async function tipFor(x){
   list.onmouseleave=hide;list.onscroll=hide;list.onclick=(f=>e=>{hide();f(e)})(list.onclick);};
 }
 function listUI(rows,fn){
-  $('#list').innerHTML=rows.map((r,i)=>`<div class="row${r[2]&&r[2].boss?' boss':''}" data-i="${i}"><div style="display:flex;align-items:center;gap:8px">${r[2]&&r[2].icon?`<img loading="lazy" width="32" height="32" src="/api/icon?size=64&path=${encodeURIComponent(r[2].icon)}" style="object-fit:contain" onerror="this.style.visibility='hidden'">`:''}${esc(r[0])}${r[2]&&r[2].boss?'<em class="bt">босс</em>':''}${r[2]&&r[2].dups?`<em class="bt dp" title="Скрыто одинаковых вариантов: ${r[2].dups}">+${r[2].dups}</em>`:''}</div><span>${esc(r[1])}</span></div>`).join('')||'<div class="msg">Ничего не найдено</div>';
+  $('#list').innerHTML=rows.map((r,i)=>`<div class="row${r[2]&&r[2].boss?' boss':''}" data-i="${i}"><div style="display:flex;align-items:center;gap:8px">${r[2]&&r[2].icon?`<img loading="lazy" width="32" height="32" src="/api/icon?size=64&path=${encodeURIComponent(r[2].icon)}" style="object-fit:contain" onerror="this.style.visibility='hidden'">`:''}${esc(r[0])}${r[2]&&r[2].boss?'<em class="bt">босс</em>':''}${r[2]&&r[2].dnt?`<em class="bt dp" title="${r[2].dnt==='unused'?'Помечен [DNT-UNUSED]: в игре не используется':'Помечен [DNT]: служебное название разработчиков'}">${r[2].dnt==='unused'?'DNT · не исп.':'DNT'}</em>`:''}${r[2]&&r[2].dups?`<em class="bt dp" title="Скрыто одинаковых вариантов: ${r[2].dups}">+${r[2].dups}</em>`:''}</div><span>${esc(r[1])}</span></div>`).join('')||'<div class="msg">Ничего не найдено</div>';
   $('#list').onclick=e=>{const row=e.target.closest('.row');if(!row)return;document.querySelectorAll('.row.on').forEach(x=>x.classList.remove('on'));row.classList.add('on');fn(rows[row.dataset.i],rows)};
   if(window.__hideTip)window.__hideTip();
   if(tab==='items'&&window.__bindTip)window.__bindTip($('#list'),rows);else $('#list').onmouseover=null;
@@ -593,6 +593,30 @@ function tooltip(u,kind){
   if(u.flavour)sec.push(`<div class="fl">${esc(u.flavour)}</div>`);
   if(u.league)sec.push(`<div class="lg">League: ${esc(u.league)}</div>`);
   return `<div class="tip">${kind&&kind!=='unique'?hdr(kind,u.name):hdr('unique',u.name,u.base||'')}<div class="bd">${sec.join('<div class="sep"></div>')}</div></div>`;
+}
+async function showItemCard(x){
+  const inf=$('#info'); inf.style.maxHeight='62%'; inf.innerHTML='Загрузка…';
+  let d; try{d=await api('/api/itemcard?row='+x.row)}catch(e){inf.textContent='Не удалось открыть карточку: '+e.message;if(x.model)showModel(x.model,x.name,x.icon,true);return}
+  if(tab!=='items')return;
+  const b=(d.info&&d.info.base)||{}, u={name:d.name,base:d.class||'',level:d.level,baseInfo:{armour:b.armour,weapon:b.weapon,req:b.req},implicits:[],mods:[]};
+  let html=tooltip(u,hdrKind(d.class));
+  const extra=[];
+  if(b.block)extra.push(`<div><span class="k">Block:</span> <span class="v">${b.block}%</span></div>`);
+  if(b.move)extra.push(`<div><span class="k">Movement Speed:</span> <span class="v">${b.move>0?'+':''}${b.move}%</span></div>`);
+  if(d.stack)extra.push(`<div><span class="k">Stack Size:</span> <span class="v">${d.stack}</span></div>`);
+  if(d.size&&d.size[0])extra.push(`<div><span class="k">Size:</span> <span class="v">${d.size[0]}×${d.size[1]}</span></div>`);
+  if(d.level&&!b.req)extra.push(`<div><span class="k">Drop Level:</span> <span class="v">${d.level}</span></div>`);
+  const sec=[];
+  if(d.dnt)sec.push(`<div class="lg">${d.dnt==='unused'?'Помечен [DNT-UNUSED]: в игре не используется':'Помечен [DNT]: служебное название разработчиков'} (${esc(d.rawName)})</div>`);
+  if(d.description)sec.push(`<div class="m">${esc(d.description).replace(/\n/g,'<br>')}</div>`);
+  if(d.gem){const gtags=(d.gem.tags||[]).join(', ');if(gtags)sec.push(`<div class="lg">${esc(gtags)}</div>`);if(d.gem.text&&d.gem.text!==d.description)sec.push(`<div class="m">${esc(d.gem.text)}</div>`)}
+  if(d.flavour)sec.push(`<div class="fl">${esc(d.flavour)}</div>`);
+  html=html.replace('<div class="bd">','<div class="bd">'+extra.join('')+(sec.length?'<div class="sep"></div>'+sec.join('<div class="sep"></div>'):''));
+  const src=(d.sources||[]).length?`<div class="srcblk"><b class="h">Источники</b><div style="padding:4px 10px">Основа для уникальных предметов: ${d.sources.map(s=>`<a href="#" data-u="${esc(s.name)}">${esc(s.name)}</a>`).join(', ')}</div></div>`:'';
+  inf.innerHTML=(d.icon?`<img src="/api/icon?path=${encodeURIComponent(d.icon)}" style="float:left;max-width:96px;max-height:128px;margin:10px">`:'')+html+src;
+  inf.onclick=e=>{const a=e.target.closest('a[data-u]');if(a){e.preventDefault();showUnique(a.dataset.u)}};
+  const mdl=d.worn||d.model;
+  if(mdl)showModel(mdl,d.name,d.icon,true); else if(viewer&&viewer.cur){viewer.scene.remove(viewer.cur);viewer.cur=null}
 }
 async function wornOf(qs){try{return (await api('/api/wornmodel?'+qs)).model||null}catch(e){return null}}
 async function showUnique(name){
@@ -677,7 +701,7 @@ async function load(){
   document.querySelectorAll('nav button').forEach(b=>{if(b.dataset.t===tab)b.setAttribute('aria-current','page');else b.removeAttribute('aria-current')});
   {const home=tab==='home',tr=tab==='tree'||tab==='atlas';['#left','#grip','#right'].forEach(i=>{$(i).style.display=(home||tr)?'none':''});$('#home').hidden=!home;if(home&&window.__homeRefresh&&window.__homeLoaded)window.__homeRefresh();window.__homeLoaded=1;$('#treev').hidden=!tr;if(tr){leaveEditor(edCtx);document.title=tab==='atlas'?'Дерево Атласа':'Дерево пассивных умений';$('#skmid').hidden=true;$('#mgrip').hidden=true;try{await openTree($('#treev'),api,tab==='atlas'?'atlas':'passives')}catch(e){$('#treev').innerHTML='<div class="msg">Ошибка: '+esc(e.message)+'</div>'}return}if(home){leaveEditor(edCtx);document.title='PoE Inspector';return}}
   const q=encodeURIComponent($('#q').value), mo=$('#monly').checked?'&model=1':'';
-  $('#mlabel').style.display=(tab==='items'||tab==='monsters')?'':'none'; $('#ulabel').style.display=tab==='items'?'':'none'; $('#asel').style.display=tab==='monsters'?'':'none'; $('#cls').style.display=(tab==='items'||tab==='mods'||tab==='ref'||tab==='sources')?'':'none'; $('#gsel').style.display=(tab==='mods'||tab==='ref')?'':'none'; $('#tsel').style.display=tab==='mods'?'':'none'; if(tab!=='mods')leaveMods(); if(tab!=='ref')leaveRef(); if(tab!=='sources')leaveSrc(); $('#q').placeholder=tab==='files'?'Поиск файла по пути…':'Поиск…'; $('#bar').style.flexWrap='wrap'; $('#info').style.maxHeight='';
+  $('#mlabel').style.display=(tab==='items'||tab==='monsters')?'':'none'; $('#ulabel').style.display=tab==='items'?'':'none'; $('#dlabel').style.display=tab==='items'?'':'none'; $('#asel').style.display=tab==='monsters'?'':'none'; $('#cls').style.display=(tab==='items'||tab==='mods'||tab==='ref'||tab==='sources')?'':'none'; $('#gsel').style.display=(tab==='mods'||tab==='ref')?'':'none'; $('#tsel').style.display=tab==='mods'?'':'none'; if(tab!=='mods')leaveMods(); if(tab!=='ref')leaveRef(); if(tab!=='sources')leaveSrc(); $('#q').placeholder=tab==='files'?'Поиск файла по пути…':'Поиск…'; $('#bar').style.flexWrap='wrap'; $('#info').style.maxHeight='';
   if(tab!=='tables'&&!viewer)$('#view').innerHTML='';
   try{
     if(tab!=='monsters')leaveMonsters(edCtx);if(tab!=='editor'&&tab!=='skills'&&tab!=='monsters')leaveEditor(edCtx);
@@ -711,10 +735,10 @@ async function load(){
       setLayout(false);
       const uo=tab==='items'&&$('#uonly').checked, cl=tab==='items'?$('#cls').value:'';
       let urows=[];
-      if(tab==='items'){urows=(await api(`/api/uniques?q=${q}`)).filter(r=>!cl||!r.class||r.class===cl).map(r=>[r.name,'Уникальный · '+(r.base||r.slot||''),{...r,_u:1}])}
+      if(tab==='items'&&uo&&!$('#dntonly').checked){urows=(await api(`/api/uniques?q=${q}`)).filter(r=>!cl||r.class===cl).map(r=>[r.name,'Уникальный · '+(r.base||r.slot||''),{...r,_u:1}])}
       if(tab==='monsters'){const g=$('#asel');if(!g.options.length){g.innerHTML='<option value="">Все акты и зоны</option>'+['Акт 1','Акт 2','Акт 3','Акт 4','Акт 5 (в файлах)','Интерлюдия','Эндгейм','Лиги','Без зоны','DNT'].map(x=>`<option value="${x}">${x}</option>`).join('')}}
-      const irows=uo?[]:(await api(`/api/${tab}?q=${q}&limit=${tab==='items'?6000:3000}${mo}`+(cl?'&class='+encodeURIComponent(cl):'')+(tab==='monsters'&&$('#asel').value?'&act='+encodeURIComponent($('#asel').value):''))).map(r=>[r.name,tab==='monsters'?(r.tags||[]).join(' · ')+(r.model?' · 3D':''):(r.class||'')+(r.model?' · 3D':''),r]);
-      listUI(irows.concat(urows),async(r)=>{const x=r[2];if(tab==='monsters'){showMonster(edCtx,x);return}window.__cls=tab==='items'?(x.class||''):'';if(x._u){showUnique(x.name);return}if(x.model){const wm=await wornOf('row='+x.row);showModel(wm||x.model,x.name,x.icon)}else $('#info').textContent=x.name+' — модели нет';});
+      const dn=tab==='items'&&$('#dntonly').checked, irows=uo?[]:(await api(`/api/${tab}?q=${q}&limit=${tab==='items'?6000:3000}${mo}`+(dn?'&dnt=1':'')+(cl?'&class='+encodeURIComponent(cl):'')+(tab==='monsters'&&$('#asel').value?'&act='+encodeURIComponent($('#asel').value):''))).map(r=>[r.name,tab==='monsters'?(r.tags||[]).join(' · ')+(r.model?' · 3D':''):(r.class||'')+(r.model?' · 3D':''),r]);
+      listUI(irows.concat(urows),async(r)=>{const x=r[2];if(tab==='monsters'){showMonster(edCtx,x);return}window.__cls=tab==='items'?(x.class||''):'';if(x._u){showUnique(x.name);return}showItemCard(x);});
     }else if(tab==='models'){
       setLayout(false);
       const rows=(await api(`/api/files?q=${q}&limit=500&ext=smd`)).concat(await api(`/api/files?q=${q}&limit=500&ext=fmt`));

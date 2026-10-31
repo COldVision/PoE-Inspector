@@ -13,3 +13,13 @@ I18N.add({
   [/^(.*) · 3D$/, '$1 · 3D']
 ]);
 I18N.add({ 'К списку': 'Back to list' });
+I18N.add({
+  'Источники': 'Sources', 'DNT · не исп.': 'DNT · unused',
+  'Помечен [DNT-UNUSED]: в игре не используется': 'Marked [DNT-UNUSED]: not used in the game',
+  'Помечен [DNT]: служебное название разработчиков': 'Marked [DNT]: developer placeholder name'
+}, [
+  [/^Не удалось открыть карточку: (.*)$/, 'Could not open the card: $1'],
+  [/^Основа для уникальных предметов: (.*)$/, 'Base for unique items: $1'],
+  [/^Помечен \[DNT(-UNUSED)?\]: (.*) \((.*)\)$/, 'Marked [DNT$1]: $2 ($3)']
+]);
+I18N.add({ 'Предметы с пометкой [DNT] / [UNUSED] в названии': 'Items marked [DNT] / [UNUSED] in the name' });

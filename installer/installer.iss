@@ -43,4 +43,7 @@ Filename: "{app}\runtime\pythonw.exe"; Parameters: """{app}\app\app_main.pyw""";
 [UninstallDelete]
 Type: filesandordirs; Name: "{app}\app\__pycache__"
 Type: filesandordirs; Name: "{app}\app\poe_inspector\__pycache__"
-; the database and caches live in %LOCALAPPDATA%\PoE Inspector and are kept on uninstall (about 1 GB, rebuilt on demand)
+; the database, caches and window profile live in {app}\data (about 2 GB, built on first launch); uninstall removes them with the program
+Type: filesandordirs; Name: "{app}\data"
+Type: filesandordirs; Name: "{app}\runtime\__pycache__"
+Type: filesandordirs; Name: "{app}\runtime\Lib\site-packages\__pycache__"

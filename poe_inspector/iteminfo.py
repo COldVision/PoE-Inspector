@@ -7,14 +7,16 @@ _idx = {}
 def _index(store):
     if _idx:
         return _idx
+    built = {}
     for name, key in (("armourtypes", "arm"), ("weapontypes", "wep"), ("shieldtypes", "shd"), ("attributerequirements", "req")):
         try:
             t = table(store, name); m = {}
             for i in range(len(t)):
                 m[t.get(i, "BaseItemType")] = t.row(i)
-            _idx[key] = m
+            built[key] = m
         except Exception:
-            _idx[key] = {}
+            built[key] = {}
+    _idx.update(built)   # one update: a concurrent request never sees a half-filled index
     return _idx
 
 
